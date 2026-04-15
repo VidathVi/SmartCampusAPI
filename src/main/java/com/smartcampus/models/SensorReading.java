@@ -9,6 +9,10 @@ package com.smartcampus.models;
  * @author dassa
  */
 public class SensorReading {
+    
+    private String id;
+    private long timestamp;
+    private double value;
 
     public String getId() {
         return id;
@@ -33,9 +37,6 @@ public class SensorReading {
     public void setValue(double value) {
         this.value = value;
     }
-    private String id;
-    private long timestamp;
-    private double value;
 
     public SensorReading(String id, long timestamp, double value) {
         this.id = id;
