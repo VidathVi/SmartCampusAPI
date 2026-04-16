@@ -16,4 +16,14 @@ public class DataStore {
     private static Map<String, Room> rooms = new ConcurrentHashMap<>();
     private static Map<String, Sensor> sensors = new ConcurrentHaspMap<>();
     
+    static{
+        //dummy room initialization
+        Room dummyRoom = new Room("DumR-001", "Dummy Room", 67);
+        
+        //dummy sensor initialization
+        Sensor dummySensor = new Sensor("DumT-001", "Temperature", "ACTIVE", 24, "DUMR-001");
+        
+        //adding the sensor IDto room's list
+        dummyRoom.getSensorIds().add(dummySensor.getId());
+    }
 }
