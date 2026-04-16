@@ -10,11 +10,13 @@ package com.smartcampus.datastore;
  */
 import com.smartcampus.models.Room;
 import com.smartcampus.models.Sensor;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class DataStore {
     
     private static Map<String, Room> rooms = new ConcurrentHashMap<>();
-    private static Map<String, Sensor> sensors = new ConcurrentHaspMap<>();
+    private static Map<String, Sensor> sensors = new ConcurrentHashMap<>();
     
     static{
         //dummy room initialization
@@ -25,5 +27,9 @@ public class DataStore {
         
         //adding the sensor IDto room's list
         dummyRoom.getSensorIds().add(dummySensor.getId());
+        
+        //Store objects in the static maps
+        rooms.put(dummyRoom.getId(), dummyRoom);
+        sensors.put(dummySensor.getId(), dummySensor);
     }
 }

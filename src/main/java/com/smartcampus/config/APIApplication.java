@@ -4,10 +4,14 @@
  */
 package com.smartcampus.config;
 
+import javax.ws.rs.ApplicationPath;
+import javax.ws.rs.core.Application;
+
 /**
  *
  * @author dassa
  */
-public class Application {
+@ApplicationPath("/api/v1")
+public class ApiApplication extends Application{
     
 }
