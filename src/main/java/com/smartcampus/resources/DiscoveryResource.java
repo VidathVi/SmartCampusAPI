@@ -30,7 +30,13 @@ public class DiscoveryResource {
         
         
         Map<String, String> endpoints = new HashMap<>();
-        endpoints.put
+        endpoints.put("rooms", "/api/v1/rooms");
+        endpoints.put("sensors", "/api/v1/sensrs");
+        
+        //connecting endpoints to the metadata hasjmap
+        metadata.put("resources", endpoints);
+        
+        return Response.ok(metadata).build();
     }
     
 }
