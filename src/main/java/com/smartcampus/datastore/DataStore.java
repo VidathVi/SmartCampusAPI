@@ -15,7 +15,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class DataStore {
     
-    private static Map<String, Room> rooms = new ConcurrentHashMap<>();
+    public static Map<String, Room> rooms = new ConcurrentHashMap<>();
     private static Map<String, Sensor> sensors = new ConcurrentHashMap<>();
     
     static{
