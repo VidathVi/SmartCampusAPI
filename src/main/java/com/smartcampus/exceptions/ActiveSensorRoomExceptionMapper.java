@@ -4,6 +4,9 @@
  */
 package com.smartcampus.exceptions;
 
+import java.util.HashMap;
+import java.util.Map;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
@@ -16,8 +19,12 @@ import javax.ws.rs.ext.Provider;
 public class ActiveSensorRoomExceptionMapper implements ExceptionMapper<ActiveSensorRoomException>{
 
     @Override
-    public Response toResponse(ActiveSensorRoomException e) {
+    public Response toResponse(ActiveSensorRoomException exception) {
+        Map<String, String> errorResponse = new HashMap<>();
+        errorResponse.put("error", exception.getMessage());
         
+        return Response.status(Response.Status.CONFLICT)
+                .entity(errorResponse).type(MediaType.APPLICATION_JSON).build();
     }
     
 }
