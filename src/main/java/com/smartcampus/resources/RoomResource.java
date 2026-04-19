@@ -7,6 +7,7 @@ package com.smartcampus.resources;
 import com.smartcampus.datastore.DataStore;
 import com.smartcampus.models.Room;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -40,5 +41,12 @@ public class RoomResource {
     public Response createRoom(Room room){
         DataStore.rooms.put(room.getId(), room);
         return Response.status(Response.Status.CREATED).entity(room).build();
+    }
+    
+    @DELETE
+    @Path("/{roomId}")
+    public Response deleteRoom(@PathParam("roomId") String roomId){
+        //fetch room
+        Room room = com.smartcampus.datastore.DataStore.rooms.get(roomId);
     }
 }
