@@ -23,5 +23,5 @@ public class LinkedResourceNotFoundExceptionMapper implements ExceptionMapper<Li
         
         return Response.status(422).entity(errorMessage).type(MediaType.APPLICATION_JSON).build();
     }
-    
+     
 }
