@@ -5,6 +5,7 @@
 package com.smartcampus.resources;
 
 import com.smartcampus.datastore.DataStore;
+import com.smartcampus.exceptions.ActiveSensorRoomException;
 import com.smartcampus.models.Room;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -46,7 +47,23 @@ public class RoomResource {
     @DELETE
     @Path("/{roomId}")
     public Response deleteRoom(@PathParam("roomId") String roomId){
-        //fetch room
+        //fetch room from datastore
         Room room = com.smartcampus.datastore.DataStore.rooms.get(roomId);
+        
+        
+        //check if the room exists
+        if(room == null){
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+        
+        //check if the room has sensors
+        if(!room.getSensorIds().isEmpty()){
+            throw new ActiveSensorRoomException("Room with active sensors cannot be deleted");
+        }
+        
+        //delet room if it's empty
+        com.smartcampus.datastore.DataStore.rooms.remove(roomId);
+        return Response.noContent().build();
+        
     }
 }
