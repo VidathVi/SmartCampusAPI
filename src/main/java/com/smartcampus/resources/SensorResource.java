@@ -7,10 +7,15 @@ package com.smartcampus.resources;
 import com.smartcampus.datastore.DataStore;
 import com.smartcampus.exceptions.LinkedResourceNotFoundException;
 import com.smartcampus.models.Sensor;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -35,5 +40,27 @@ public class SensorResource {
         
         DataStore.sensors.put(newSensor.getId(), newSensor);
         return Response.status(Response.Status.CREATED).entity(newSensor).build();
+    }
+    
+    @GET
+    public Response getSensors(@QueryParam("type") String type){
+        
+        //Fetching all sensors from DataStore
+        Collection<Sensor> allSensors = DataStore.sensors.values();
+        
+        if(type == null || type.trim().isEmpty()){
+            return Response.ok(allSensors).build();
+        }
+        
+        List<Sensor> filteredList = new ArrayList<>();
+        
+        for(Sensor sensor : allSensors){
+            if(sensor.getType().equalsIgnoreCase(type)){
+                filteredList.add(sensor);
+            }
+        }
+        
+        return Response.ok(filteredList).build();
+        
     }
 }
