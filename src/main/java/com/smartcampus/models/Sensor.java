@@ -15,12 +15,12 @@ public class Sensor {
     private double currentValue;
     private String roomId;
 
-    public Sensor(String id, String type, String status, double currentValue, String roomID) {
+    public Sensor(String id, String type, String status, double currentValue, String roomId) {
         this.id = id;
         this.type = type;
         this.status = status;
         this.currentValue = currentValue;
-        this.roomId = roomID;
+        this.roomId = roomId;
     }
 
     public Sensor() {
