@@ -23,6 +23,11 @@ public class Sensor {
         this.roomID = roomID;
     }
 
+    public Sensor() {
+    }
+    
+    
+
     public String getId() {
         return id;
     }
