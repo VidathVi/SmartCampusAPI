@@ -4,6 +4,9 @@
  */
 package com.smartcampus.resources;
 
+import com.smartcampus.datastore.DataStore;
+import com.smartcampus.models.SensorReading;
+import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Produces;
@@ -27,5 +30,7 @@ public class SensorReadingResource {
     @GET
     public Response getReading(){
         
+        //Fetching all the readings of the current sensor
+        List<SensorReading> sensorReading = DataStore.readings.get(sensorId);
     }
 }
