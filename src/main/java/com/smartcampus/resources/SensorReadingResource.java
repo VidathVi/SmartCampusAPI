@@ -8,6 +8,6 @@ package com.smartcampus.resources;
  *
  * @author dassa
  */
-public class SensorReadingResources {
+public class SensorReadingResource {
     
 }
