@@ -43,6 +43,10 @@ public class SensorReading {
         this.timestamp = timestamp;
         this.value = value;
     }
+
+    public SensorReading() {
+    }
+    
     
     
     
