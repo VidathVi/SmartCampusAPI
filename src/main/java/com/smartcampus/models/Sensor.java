@@ -60,12 +60,12 @@ public class Sensor {
         this.currentValue = currentValue;
     }
 
-    public String getRoomID() {
+    public String getRoomId() {
         return roomId;
     }
 
-    public void setRoomID(String roomID) {
-        this.roomId = roomID;
+    public void setRoomId(String roomId) {
+        this.roomId = roomId;
     }
     
     

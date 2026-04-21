@@ -33,7 +33,7 @@ public class SensorResource {
     @POST
     public Response createSensor(Sensor newSensor){
         
-        String roomId = newSensor.getRoomID();
+        String roomId = newSensor.getRoomId();
         
         if(!DataStore.rooms.containsKey(roomId)){
             throw new LinkedResourceNotFoundException("The specified room ID does not exist");
