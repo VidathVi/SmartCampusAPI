@@ -16,10 +16,10 @@ import javax.ws.rs.ext.Provider;
  * @author dassa
  */
 @Provider
-public class ActiveSensorRoomExceptionMapper implements ExceptionMapper<ActiveSensorRoomException>{
+public class RoomNotEmptyExceptionMapper implements ExceptionMapper<RoomNotEmptyException>{
 
     @Override
-    public Response toResponse(ActiveSensorRoomException exception) {
+    public Response toResponse(RoomNotEmptyException exception) {
         Map<String, String> errorResponse = new HashMap<>();
         errorResponse.put("error", exception.getMessage());
         

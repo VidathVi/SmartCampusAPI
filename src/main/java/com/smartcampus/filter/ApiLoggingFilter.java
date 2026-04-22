@@ -2,15 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.smartcampus.exceptions;
+package com.smartcampus.filter;
 
 /**
  *
  * @author dassa
  */
-public class ActiveSensorRoomException extends RuntimeException{
+public class ApiLoggingFilter {
     
-    public ActiveSensorRoomException(String message){
-        super(message);
-    }
 }

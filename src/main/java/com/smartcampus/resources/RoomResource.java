@@ -5,7 +5,7 @@
 package com.smartcampus.resources;
 
 import com.smartcampus.datastore.DataStore;
-import com.smartcampus.exceptions.ActiveSensorRoomException;
+import com.smartcampus.exceptions.RoomNotEmptyException;
 import com.smartcampus.models.Room;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -58,7 +58,7 @@ public class RoomResource {
         
         //check if the room has sensors
         if(!room.getSensorIds().isEmpty()){
-            throw new ActiveSensorRoomException("Room with active sensors cannot be deleted");
+            throw new RoomNotEmptyException("Room with active sensors cannot be deleted");
         }
         
         //delet room if it's empty
