@@ -4,6 +4,8 @@
  */
 package com.smartcampus.exceptions;
 
+import java.util.HashMap;
+import java.util.Map;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
@@ -18,8 +20,15 @@ public class SensorUnavailableExceptionMapper implements ExceptionMapper<SensorU
 
     @Override
     public Response toResponse(SensorUnavailableException e) {
-        return Response.status(Response.Status.FORBIDDEN)
-                .entity(e.getMessage()).type(MediaType.APPLICATION_JSON).build();
+            Map<String, Object> errorResponse = new HashMap<>();
+            errorResponse.put("status", 403);
+            errorResponse.put("error", "Forbidden");
+            errorResponse.put("message", e.getMessage());
+            
+            return Response.status(Response.Status.FORBIDDEN)
+                    .entity(errorResponse)
+                    .type(MediaType.APPLICATION_JSON)
+                    .build();
     }
     
 }
