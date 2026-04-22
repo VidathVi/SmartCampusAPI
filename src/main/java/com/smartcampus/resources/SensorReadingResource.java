@@ -5,6 +5,7 @@
 package com.smartcampus.resources;
 
 import com.smartcampus.datastore.DataStore;
+import com.smartcampus.exceptions.SensorUnavailableException;
 import com.smartcampus.models.Sensor;
 import com.smartcampus.models.SensorReading;
 import java.util.ArrayList;
@@ -49,6 +50,10 @@ public class SensorReadingResource {
     public Response addSensorReading(SensorReading newReading){
         
         Sensor parentSensor = DataStore.sensors.get(this.sensorId);
+        
+        if("MAINTENANCE".equalsIgnoreCase(parentSensor.getStatus())){
+            throw new SensorUnavailableException("Sensor is under maintanance. Cannot accept new readings");
+        }
         
         parentSensor.setCurrentValue(newReading.getValue());
         
