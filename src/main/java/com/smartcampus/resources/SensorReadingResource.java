@@ -51,6 +51,13 @@ public class SensorReadingResource {
         
         Sensor parentSensor = DataStore.sensors.get(this.sensorId);
         
+        
+        if (parentSensor == null) {
+        return Response.status(Response.Status.NOT_FOUND)
+                       .entity("Sensor with ID " + this.sensorId + " not found.")
+                       .build();
+    }
+        
         if("MAINTENANCE".equalsIgnoreCase(parentSensor.getStatus())){
             throw new SensorUnavailableException("Sensor is under maintanance. Cannot accept new readings");
         }

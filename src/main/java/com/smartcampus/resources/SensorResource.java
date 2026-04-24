@@ -30,18 +30,24 @@ import javax.ws.rs.core.Response;
 @Consumes(MediaType.APPLICATION_JSON)
 public class SensorResource {
     
-    @POST
-    public Response createSensor(Sensor newSensor){
-        
-        String roomId = newSensor.getRoomId();
-        
-        if(!DataStore.rooms.containsKey(roomId)){
-            throw new LinkedResourceNotFoundException("The specified room ID does not exist");
-        }
-        
-        DataStore.sensors.put(newSensor.getId(), newSensor);
-        return Response.status(Response.Status.CREATED).entity(newSensor).build();
+@POST
+public Response createSensor(Sensor newSensor) {
+    String roomId = newSensor.getRoomId();
+    
+    // 1. Verify the room exists 
+    if (!DataStore.rooms.containsKey(roomId)) {
+        throw new LinkedResourceNotFoundException("The specified room ID does not exist");
     }
+    
+    // 2. THE FIX: Retrieve the Room and update its sensorIds list [cite: 58]
+    // This ensures that when you call room.getSensorIds() later, it's not empty.
+    DataStore.rooms.get(roomId).getSensorIds().add(newSensor.getId());
+    
+    // 3. Register the sensor in the global store [cite: 128]
+    DataStore.sensors.put(newSensor.getId(), newSensor);
+    
+    return Response.status(Response.Status.CREATED).entity(newSensor).build();
+}
     
     @GET
     public Response getSensors(@QueryParam("type") String type){
